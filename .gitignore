@@ -1,0 +1,55 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ===== Virtual environment =====
+ml_env/
+venv/
+env/
+
+# ===== Data (large, regenerable -- don't commit) =====
+data/raw/
+data/processed/
+*.npz
+*.npy
+
+# ===== Model artifacts (large binary files) =====
+artifacts/models/*.h5
+artifacts/models/*.keras
+artifacts/models/*.pb
+artifacts/
+
+# ===== Logs =====
+logs/
+*.log
+
+# ===== Keras/TensorFlow cache =====
+.keras/
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+notebooks/*.ipynb_checkpoints/
+
+# ===== Flask uploads (user-uploaded test images) =====
+static/uploads/
+
+# ===== Environment / secrets =====
+.env
+*.env
+
+# ===== IDE / Editor =====
+.vscode/
+.idea/
+*.swp
+
+# ===== OS junk =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Compiled/packaging =====
+build/
+dist/
+*.egg-info/
