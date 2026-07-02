@@ -72,3 +72,21 @@ class Trainer:
             return history
         except Exception as e:
             raise CustomException(e, sys)
+
+    def train_with_dataset(self, train_ds, val_ds):
+        try:
+            callbacks = self.get_callbacks()
+            logger.info(f"Training started (tf.data pipeline) -- epochs={self.EPOCHS}")
+
+            history = self.model.fit(
+                train_ds,
+                validation_data=val_ds,
+                epochs=self.EPOCHS,
+                callbacks=callbacks,
+                verbose=1
+            )
+
+            logger.info("Training completed")
+            return history
+        except Exception as e:
+            raise CustomException(e, sys)

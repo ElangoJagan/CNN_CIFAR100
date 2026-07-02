@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CIFAR-100 Image Classifier</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        h1 { color: #333; }
+        .upload-box { border: 2px dashed #ccc; padding: 30px; text-align: center; border-radius: 8px; }
+        img { max-width: 200px; margin-top: 20px; border-radius: 8px; }
+        .prediction { padding: 10px; margin: 5px 0; background: #f0f0f0; border-radius: 5px; }
+        .top1 { background: #d4edda; font-weight: bold; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>CIFAR-100 Image Classifier</h1>
+    <p>Upload an image, model will predict which of 100 classes it belongs to.</p>
+
+    <div class="upload-box">
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <br><br>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if image_path %}
+        <img src="{{ image_path }}" alt="Uploaded image">
+    {% endif %}
+
+    {% if predictions %}
+        <h2>Top 5 Predictions:</h2>
+        {% for pred in predictions %}
+            <div class="prediction {% if loop.index == 1 %}top1{% endif %}">
+                {{ pred.class_name }} -- {{ pred.confidence }}%
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
